@@ -1,7 +1,7 @@
 /**
  * Two Channel Receiver
  * Author: Shawn Hymel (SparkFun Electronics)
- * Editted and Stolen by: Abington Engineering Team
+ * Editted and Stolen by:Nic
  * Mixes two channels for arcade drive.
  */
 
@@ -27,7 +27,6 @@ void setup() {
   pinMode(BInPin, INPUT);
   pinMode(LED_BUILTIN, OUTPUT);
   sr.interrupt(ShiftRegisterPWM::UpdateFrequency::Medium);
-  Serial.begin(9600);
 }
 
 void loop() {
@@ -44,6 +43,7 @@ void loop() {
   bladeDrive(b);
   // Drive motor
   drive(x, y);
+  //these are randoms for the last pins of the register
   sr.set(5,255);
   sr.set(6,200);
   sr.set(7,100);
@@ -77,8 +77,6 @@ void drive(int speed_a, int speed_b) {
   // Set speed
   sr.set(0,abs(speed_a));
   sr.set(2,abs(speed_b));
-  Serial.println(abs(speed_a));
-  //Serial.println(abs(speed_b));
 }
 
 // Convert RC pulse value to motor PWM value. The reason for multiple pulse readers is due to different signal ranges coming from the receiever. This allows for correct movement
